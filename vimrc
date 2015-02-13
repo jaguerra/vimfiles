@@ -29,7 +29,7 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
 
-"color desert
+color desert
 "let g:airline_theme=
 
 
@@ -49,7 +49,7 @@ let g:phpqa_run_on_write = 0
 
 
 " Custom key mappings
-map <leader>n :e .<cr>
+map <leader>n :sp<cr>:e .<cr>
 
 
 
