@@ -32,6 +32,8 @@ set smartcase                   " ... unless they contain at least one capital l
 color desert
 "let g:airline_theme=
 
+" Change buffer dir to match open file
+"autocmd BufEnter * silent! lcd %:p:h
 
 " Filetypes customization
 au BufNewFile,BufRead mozex.textarea.* setfiletype typoscript
@@ -49,7 +51,8 @@ let g:phpqa_run_on_write = 0
 
 
 " Custom key mappings
-map <leader>n :sp<cr>:e .<cr>
+map <leader>n :sp<cr>:e %:p:h<cr>
+cabbr <expr> %% expand('%:p:h')
 
 
 
