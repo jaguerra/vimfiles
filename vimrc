@@ -1,7 +1,7 @@
 execute pathogen#infect()
 
 
-let mapleader = "-"
+let mapleader = ","
 
 set nocompatible                " choose no compatibility with legacy vi
 syntax enable
@@ -12,7 +12,7 @@ filetype plugin indent on       " load file type plugins + indentation
 "" Whitespace
 set nowrap                      " don't wrap lines
 set tabstop=2 shiftwidth=2      " a tab is two spaces (or set this to 4)
-set expandtab                   " use spaces, not tabs (optional)
+set noexpandtab                 " use tabs, not spaces (optional)
 set backspace=indent,eol,start  " backspace through everything in insert mode
 set list                        " Show invisible characters
 
@@ -31,6 +31,7 @@ set smartcase                   " ... unless they contain at least one capital l
 
 color desert
 "let g:airline_theme=
+set laststatus=2  " always show the status bar
 
 " Change buffer dir to match open file
 "autocmd BufEnter * silent! lcd %:p:h
@@ -38,7 +39,10 @@ color desert
 " Filetypes customization
 au BufNewFile,BufRead mozex.textarea.* setfiletype typoscript
 au BufNewFile,BufRead *.ts setfiletype typoscript
-au BufNewFile,BufRead *{setup,constants}.txt setfiletype typoscript
+au BufNewFile,BufRead setup.txt setfiletype typoscript
+au BufNewFile,BufRead constants.txt setfiletype typoscript
+au BufNewFile,BufRead *setup.txt setfiletype typoscript
+au BufNewFile,BufRead *constants.txt setfiletype typoscript
 
 au FileType {typoscript,php} set noexpandtab
 
@@ -54,6 +58,9 @@ let g:phpqa_run_on_write = 0
 map <leader>n :sp<cr>:e %:p:h<cr>
 cabbr <expr> %% expand('%:p:h')
 
+" Tags file
+" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+set tags=.git/tags,tags,./tags
 
 
 " Return indent (all whitespace at start of a line), converted from
@@ -84,3 +91,9 @@ endfunction
 command! -nargs=? -range=% Space2Tab call IndentConvert(<line1>,<line2>,0,<q-args>)
 command! -nargs=? -range=% Tab2Space call IndentConvert(<line1>,<line2>,1,<q-args>)
 command! -nargs=? -range=% RetabIndent call IndentConvert(<line1>,<line2>,&et,<q-args>)
+
+" Convert src relative paths to VH f:uri.resource
+function! ImgSrc2UriResource()
+	execute '%s/src="\.\.\/\([^"]*\)"/src="{f:uri.resource(path: ''Assets\/\1'', extensionName: ''speciality'')}"/g'
+endfunction
+command! -nargs=? -range=% ImgSrc2UriResource call ImgSrc2UriResource()
