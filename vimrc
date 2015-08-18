@@ -65,6 +65,9 @@ set tags=.git/tags,tags,./tags
 " Editorconfig must play well with Fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
+" scss_lint with syntastic
+let g:syntastic_scss_checkers = ['scss_lint']
+
 
 " Return indent (all whitespace at start of a line), converted from
 " tabs to spaces if what = 1, or from spaces to tabs otherwise.
