@@ -58,6 +58,15 @@ let g:phpqa_run_on_write = 0
 map <leader>n :sp<cr>:e %:p:h<cr>
 cabbr <expr> %% expand('%:p:h')
 
+" Tmux navigation
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <c-w>h :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-w>j :TmuxNavigateDown<cr>
+nnoremap <silent> <c-w>k :TmuxNavigateUp<cr>
+nnoremap <silent> <c-w>l :TmuxNavigateRight<cr>
+nnoremap <silent> <c-w>\ :TmuxNavigatePrevious<cr>
+
 " Tags file
 " http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 set tags=.git/tags,tags,./tags
