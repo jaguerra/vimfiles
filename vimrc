@@ -71,6 +71,8 @@ nnoremap <silent> <c-w>\ :TmuxNavigatePrevious<cr>
 " http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 set tags=.git/tags,tags,./tags
 
+map <Leader>rt :!ctags --tag-relative --extra=+f -Rf.git/tags --exclude=.git,pkg --languages=-javascript,sql<CR><CR>
+
 " Editorconfig must play well with Fugitive
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
